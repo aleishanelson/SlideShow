@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html land="en">
+<head>
+<title> Study Abroad Slideshow</title>
+<meta charset="utf-8">
+
+<script type="text/javascript">
+
+var Botswana = new Array(6);
+
+Botswana[0] = "Images/Botswana1.jpg";
+Botswana[1] = "Images/Botswana2.jpg";
+Botswana[2] = "Images/Botswana3.jpg";
+Botswana[3] = "Images/Botswana4.jpg";
+Botswana[4] = "Images/Botswana5.jpg";
+Botswana[5] = "Images/Botswana6.jpg";
+
+
+var GardenRoute = new Array(6);
+
+GardenRoute[0] = "Images/GardenRoute1.jpg";
+GardenRoute[1] = "Images/GardenRoute2.jpg";
+GardenRoute[2] = "Images/GardenRoute3.jpg";
+GardenRoute[3] = "Images/GardenRoute4.jpg";
+GardenRoute[4] = "Images/GardenRoute5.jpg";
+GardenRoute[5] = "Images/GardenRoute6.jpg";
+
+
+var CapeTown = new Array(6);
+
+CapeTown[0] = "Images/CapeTown1.jpg";
+CapeTown[1] = "Images/CapeTown2.jpg";
+CapeTown[2] = "Images/CapeTown3.jpg";
+CapeTown[3] = "Images/CapeTown4.jpg";
+CapeTown[4] = "Images/CapeTown5.jpg";
+CapeTown[5] = "Images/CapeTown6.jpg";
+
+
+var All = new Array(18);  //array of photos from all 3 trips
+
+All[0] = "Images/Botswana1.jpg";
+All[1] = "Images/Botswana2.jpg";
+All[2] = "Images/Botswana3.jpg";
+All[3] = "Images/Botswana4.jpg";
+All[4] = "Images/Botswana5.jpg";
+All[5] = "Images/Botswana6.jpg";
+All[6] = "Images/GardenRoute1.jpg";
+All[7] = "Images/GardenRoute2.jpg";
+All[8] = "Images/GardenRoute3.jpg";
+All[9] = "Images/GardenRoute4.jpg";
+All[10] = "Images/GardenRoute5.jpg";
+All[11] = "Images/GardenRoute6.jpg";
+All[12] = "Images/CapeTown1.jpg";
+All[13] = "Images/CapeTown2.jpg";
+All[14] = "Images/CapeTown3.jpg";
+All[15] = "Images/CapeTown4.jpg";
+All[16] = "Images/CapeTown5.jpg";
+All[17] = "Images/CapeTown6.jpg";
+All[18] = "Images/TableMtn.jpg";
+
+var s = new Array();  //global array to load images into
+
+var step = 0;  //global variable to keep track of the index that the image array is at
+
+function loadImages(ImageArray){
+	s.length = 0;     /* emtpy array */
+	s = ImageArray.slice();
+	step = 0;
+	display(s[step]);
+	
+	if(ImageArray== CapeTown){
+		document.getElementById("trip").innerHTML = "Cape Town";
+	}
+	else if(ImageArray == GardenRoute) {
+		document.getElementById("trip").innerHTML = "Garden Route";
+
+	}
+	else if(ImageArray == Botswana){
+		document.getElementById("trip").innerHTML = "Botswana";
+	}
+	else if(ImageArray == All) {
+		document.getElementById("trip").innerHTML = "Africa";
+
+	}
+}
+
+function loadAll(ImageArray){
+	var randomize = Math.floor(Math.random()*18);
+	s.length = 0; //emtpy array
+	s = ImageArray.slice();
+	step = randomize;
+	display(s[randomize]);
+	document.getElementById("trip").innerHTML = "All Trips!"
+}
+
+function display(photo) {
+	document.getElementById("image").src = photo;
+}
+
+/* Function for right arrow button - to increment to next photo
+ra stands for right arrow*/
+function ra() {
+	if ((step == 5)||(step ==18)){
+		step = 0; //set step back to 0 so that it will loop through photos again
+		display(s[step]);
+	}
+	else {
+		step++;
+		display(s[step]);
+	}
+}
+/* Function for left arrow button - to decrement to last photo
+la stands for left array*/
+function la() {   
+	if (step = 0) {
+		if (s.length == 6) {
+			step = 5;
+				display(s[step]);
+		}
+		else {
+			step = 18;
+		display(s[step]);
+		}
+	}
+	else {
+		step--;
+		display(s[step]);
+	}
+}
+
+
+
+function registerEvents() {
+	document.getElementById("rightarrow").addEventListener("click", ra);
+	document.getElementById("leftarrow").addEventListener("click", la);
+}
+
+
+</script>
+
+<style type="text/css">
+
+h1 {
+	margin: auto;
+	background-color: LightBlue;
+	color: White;
+	margin: 10px;
+	padding: 10px;
+	text-align: center;
+	font-family: Georgia, Arial, Helvetica;
+
+}
+
+#option {
+	width:630px;
+	position:absolute;
+	float:left;
+	margin-top:50px;
+}
+
+#option ul {
+	list-style:none;	
+}
+
+#option li {
+	border:2px solid white;
+	width:75px;
+	text-align:center;
+	color:black;
+	padding:7px;
+	margin:10px;
+	font-family:Georgia, Helvetica, Arial;
+	font-size:15px;
+}
+
+#option li:hover {
+	background-color: black;
+	color:white;
+}
+
+#option li:active {
+	background-color: LightBlue;
+	color:white;
+}
+
+#SlideShowBackground {
+	background-color: LightBlue;
+	width: 800px;
+	height: 550px;
+	border: 2px solid black;
+	margin-bottom: 20px;
+	text-align: center;
+}
+
+#Frame {
+	width:450px;
+	height:350px;
+	border:2px solid white;
+	margin:20px 30px 0px 200px;
+}
+
+#Frame img {
+	width:450px;
+	height:350px;
+}
+
+#Arrows{
+	width: 200px;
+	margin: auto;
+}
+
+#Arrows tr{
+	list-style: none;
+}
+
+#Arrows td {
+	display: inline;
+	display: block;
+	margin: 0px 20px 0px 0px;
+}
+
+#Arrows img {
+	width: 50px;
+	height: 50px;
+}
+
+#trip {
+	font-family: Georgia, Helvetica, Arial;
+	margin:auto;
+	width:150px
+	text-align: center;
+	color: white;
+	font-size: 10pt;
+}
+
+
+</style>
+</head>
+
+<body onload="registerEvents()">
+<div id="SlideShowBackground">
+	<h1> My Study Abroad </h1>
+
+<div id="option">
+<ul>
+	<li id="CapeTown" onclick="loadImages(CapeTown)" title= "Cape Town"> Cape Town </li>
+	<li id="GardenRoute" onclick="loadImages(GardenRoute)" title="Garden Route"> Garden Route </li>		
+	<li id="Botswana" onclick="loadImages(Botswana)" title="Botswana"> Botswana </li>
+	<li id="All" onclick="loadAll(All)" title="All"> All </li>
+</ul>
+</div>
+
+<div id = "trip">
+	<h2> Welcome </h2>
+</div>
+
+<div id="Frame">
+	<img id="image" src="images/TableMtn.jpg" title="Click on a Country to see pictures!" alt="Click on a country to see pictures!">
+</div>
+	
+
+<div id = "Arrows">
+	<tr>
+		<td> <img id="leftarrow" src="Images/leftarrow.png" alt = "Left Arrow"> </td>
+		<td> <img id="rightarrow" src="Images/rightarrow.png" alt = "Right Arrow"> </td>
+	</tr>
+</div>
+
+
+</div>
+</body>
+</html>
